@@ -1,62 +1,51 @@
 /*
-ËÕ²´¶û»áÔ±ÖĞĞÄ  Ğ¡³ÌĞò 
+è‹æ³Šå°”ä¼šå‘˜ä¸­å¿ƒ  å°ç¨‹åº 
 cron 10 7 * * *  sbr.js
 
-7.13   		Íê³É Ç©µ½, Íµ´óÃ×, ä¯ÀÀ²ËÆ× ÈÎÎñ
-10.11		¸üĞÂ³é½±
-12.24		¸ÄÓÃ yml2213-utils ÒÀÀµ
-
-------------------------  ÇàÁú--ÅäÖÃÎÄ¼ş-ÌùĞÄ¸´ÖÆÇøÓò  ---------------------- 
-# ËÕ²´¶û
+# è‹æ³Šå°”
 export sbr=" token & cookie @ token & cookie "
 
-×¥  api/login/auto-login  ÖĞµÄ²ÎÊı   token   ¸úcookie
-¶àÕËºÅÓÃ »»ĞĞ »ò @ ·Ö¸î
-
-±¨´íµÄ×Ô¼ºÏÂÔØ utils.js  ·ÅÔÚ½Å±¾Í¬¼¶Ä¿Â¼ÏÂ
-±¨´íµÄ×Ô¼ºÏÂÔØ utils.js  ·ÅÔÚ½Å±¾Í¬¼¶Ä¿Â¼ÏÂ
-±¨´íµÄ×Ô¼ºÏÂÔØ utils.js  ·ÅÔÚ½Å±¾Í¬¼¶Ä¿Â¼ÏÂ
-
-tgÆµµÀ: https://t.me/yml2213_tg  
+æŠ“  api/login/auto-login  ä¸­çš„å‚æ•°   token   è·Ÿcookie
+å¤šè´¦å·ç”¨ æ¢è¡Œ æˆ– @ åˆ†å‰²
 
 */
 
-const $ = new Env("ËÕ²´¶û");
+const $ = new Env("è‹æ³Šå°”");
 const alias_name = "sbr";
 const utils = require("yml2213-utils");
 
 const notify = $.isNode() ? require("./sendNotify") : "";
-const Notify = 1; 			//0Îª¹Ø±ÕÍ¨Öª,1Îª´ò¿ªÍ¨Öª,Ä¬ÈÏÎª1
+const Notify = 1; 			//0ä¸ºå…³é—­é€šçŸ¥,1ä¸ºæ‰“å¼€é€šçŸ¥,é»˜è®¤ä¸º1
 //---------------------------------------------------------------------------------------------------------
 let ckStr = process.env[alias_name];
 let msg, ck;
 let ck_status = 1;
 //---------------------------------------------------------------------------------------------------------
 let VersionCheck = "0.4";
-let Change = "\n±¨´íµÄ×Ô¼ºÏÂÔØ yml2213-utils ÒÀÀµ";
-let thank = `\n¸ĞĞ» ĞÄÓê´óÀĞ½Å±¾\n`;
+let Change = "\næŠ¥é”™çš„è‡ªå·±ä¸‹è½½ yml2213-utils ä¾èµ–";
+let thank = `\næ„Ÿè°¢ å¿ƒé›¨å¤§ä½¬è„šæœ¬\n`;
 //---------------------------------------------------------------------------------------------------------
 
 async function tips(ckArr) {
 	// let Version_latest = await Version_Check(alias_name, '1');
-	let Version = `\n?? ±¾µØ½Å±¾: V ${VersionCheck}`;
-	DoubleLog(`${Version}\n?? ?? ¸üĞÂÄÚÈİ: ${Change}`);
+	let Version = `\n?? æœ¬åœ°è„šæœ¬: V ${VersionCheck}`;
+	DoubleLog(`${Version}\n?? ?? æ›´æ–°å†…å®¹: ${Change}`);
 	// DoubleLog(`${thank}`);
 	await utils.yiyan()
-	DoubleLog(`\n========== ¹²ÕÒµ½ ${ckArr.length} ¸öÕËºÅ ==========`);
+	DoubleLog(`\n========== å…±æ‰¾åˆ° ${ckArr.length} ä¸ªè´¦å· ==========`);
 }
 
 async function start() {
 	const sbr = new Sbr(ck[0], ck[1]);
-	await sbr.init("³õÊ¼»¯");
-	await sbr.login("µÇÂ¼Ë¢ĞÂ");
-	await sbr.user_info("ÓÃ»§ĞÅÏ¢");
+	await sbr.init("åˆå§‹åŒ–");
+	await sbr.login("ç™»å½•åˆ·æ–°");
+	await sbr.user_info("ç”¨æˆ·ä¿¡æ¯");
 	if (ck_status) {
-		await sbr.sign_info("Ç©µ½²éÑ¯");
-		await sbr.task_list("ÈÎÎñÁĞ±í");
-		await sbr.prize_Info("³é½±ĞÅÏ¢");
-		await sbr.get_index_info("»ñÈ¡¿ÉÊÕÈ¡´óÃ×ĞÅÏ¢");
-		await sbr.rice_num("²éÑ¯´óÃ×ÊıÁ¿");
+		await sbr.sign_info("ç­¾åˆ°æŸ¥è¯¢");
+		await sbr.task_list("ä»»åŠ¡åˆ—è¡¨");
+		await sbr.prize_Info("æŠ½å¥–ä¿¡æ¯");
+		await sbr.get_index_info("è·å–å¯æ”¶å–å¤§ç±³ä¿¡æ¯");
+		await sbr.rice_num("æŸ¥è¯¢å¤§ç±³æ•°é‡");
 	}
 }
 
@@ -66,12 +55,12 @@ class Sbr {
 		this.token = token;
 		this.cookie = cookie;
 	}
-	// ³õÊ¼»¯
+	// åˆå§‹åŒ–
 	async init(name) {
 		if (!name) {
 			name = /function\s*(\w*)/i.exec(arguments.callee.toString())[1];
 		}
-		DoubleLog(`\n¿ªÊ¼ ${name}`);
+		DoubleLog(`\nå¼€å§‹ ${name}`);
 		host = "growrice.supor.com";
 		hostname = "https://" + host;
 		apiname = `${hostname}/rice/backend/public/index.php/api`
@@ -82,7 +71,7 @@ class Sbr {
 		}
 	}
 
-	// µÇÂ¼    post
+	// ç™»å½•    post
 	async login(name) {
 		let options = {
 			method: "get",
@@ -92,7 +81,7 @@ class Sbr {
 		let result = await httpResult(name, options);
 	}
 
-	// ÓÃ»§ĞÅÏ¢   httpGet
+	// ç”¨æˆ·ä¿¡æ¯   httpGet
 	async user_info(name) {
 
 		let options = {
@@ -103,19 +92,19 @@ class Sbr {
 		let result = await httpResult(name, options);
 
 		if (result.code == 1) {
-			DoubleLog(`${name}: ${result.msg} , »¶Ó­ ${result.data.nickname}`);
+			DoubleLog(`${name}: ${result.msg} , æ¬¢è¿ ${result.data.nickname}`);
 			await utils.wait(2);
 		} else if (result.code == 0) {
 			DoubleLog(`${name}: ${result.msg}`);
 			ck_status = 0
 		} else {
-			DoubleLog(`${name}: Ê§°Ü ? ÁËÄØ,Ô­ÒòÎ´Öª!`);
+			DoubleLog(`${name}: å¤±è´¥ ? äº†å‘¢,åŸå› æœªçŸ¥!`);
 			console.log(result);
 			ck_status = 0
 		}
 	}
 
-	// Ç©µ½ĞÅÏ¢   get
+	// ç­¾åˆ°ä¿¡æ¯   get
 	async sign_info(name) {
 		let options = {
 			method: "get",
@@ -125,19 +114,19 @@ class Sbr {
 		let result = await httpResult(name, options);
 
 		if (result.data.is_sign == false) {
-			DoubleLog(`${name}: Î´Ç©µ½ ,È¥Ç©µ½à¶!`);
-			await this.do_sign("Ç©µ½")
+			DoubleLog(`${name}: æœªç­¾åˆ° ,å»ç­¾åˆ°å–½!`);
+			await this.do_sign("ç­¾åˆ°")
 		} else if (result.data.is_sign == true) {
-			DoubleLog(`${name}: ÒÑÇ©µ½, Ã÷ÌìÔÙÀ´°É!`);
+			DoubleLog(`${name}: å·²ç­¾åˆ°, æ˜å¤©å†æ¥å§!`);
 		} else {
-			DoubleLog(`${name}: Ê§°Ü ? ÁËÄØ,Ô­ÒòÎ´Öª!`);
+			DoubleLog(`${name}: å¤±è´¥ ? äº†å‘¢,åŸå› æœªçŸ¥!`);
 			console.log(result);
 		}
 	}
 
 
 
-	// Ç©µ½    post
+	// ç­¾åˆ°    post
 	async do_sign(name) {
 		let options = {
 			method: "post",
@@ -148,19 +137,19 @@ class Sbr {
 		let result = await httpResult(name, options);
 
 		if (result.code == 1) {
-			DoubleLog(`${name}:${result.msg} ,»ñµÃ ${result.data.get_rice_num} ´óÃ×`);
+			DoubleLog(`${name}:${result.msg} ,è·å¾— ${result.data.get_rice_num} å¤§ç±³`);
 			await utils.wait(3);
 
 		} else if (result.code == 0) {
 			DoubleLog(`${name}:${result.msg}`);
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
 
-	// ÈÎÎñÁĞ±í    get   
+	// ä»»åŠ¡åˆ—è¡¨    get   
 	async task_list(name) {
 		let options = {
 			method: "get",
@@ -179,14 +168,14 @@ class Sbr {
 				[_id, name, is_finish] = [tasks[index].id, tasks[index].name, tasks[index].is_finish]
 
 				if (_id == 6 && is_finish == false) {
-					await this.get_rice("Íµ´óÃ×")
+					await this.get_rice("å·å¤§ç±³")
 				} else if (_id == 6 && is_finish == true) {
-					DoubleLog(`½ñÌìÎŞ·¨Íµ´óÃ×ÁË, Ã÷ÌìÔÙÀ´°É!`)
+					DoubleLog(`ä»Šå¤©æ— æ³•å·å¤§ç±³äº†, æ˜å¤©å†æ¥å§!`)
 				}
 				if (_id == 8 && tasks[index].list[0].is_finish == false) {
-					await this.browse_recipes("ä¯ÀÀ²ËÆ×")
+					await this.browse_recipes("æµè§ˆèœè°±")
 				} else if (_id == 8 && tasks[index].list[0].is_finish == true) {
-					DoubleLog(`½ñÌìÍê³É ä¯ÀÀ²ËÆ× ÁË, Ã÷ÌìÔÙÀ´°É!`)
+					DoubleLog(`ä»Šå¤©å®Œæˆ æµè§ˆèœè°± äº†, æ˜å¤©å†æ¥å§!`)
 				}
 
 
@@ -194,14 +183,14 @@ class Sbr {
 		} else if (result.code == 0) {
 			DoubleLog(`${name}:${result.msg}`);
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// ÍµºÃÓÑ´óÃ×
+	// å·å¥½å‹å¤§ç±³
 	async get_rice(name) {
-		await this.get_id("»ñÈ¡ºÃÓÑ´óÃ×id")
+		await this.get_id("è·å–å¥½å‹å¤§ç±³id")
 		for (let index = 0; index < _id_list.length; index++) {
 			let _id = _id_list[index]
 			let options = {
@@ -213,12 +202,12 @@ class Sbr {
 			let result = await httpResult(name, options);
 
 			if (result.code == 1) {
-				DoubleLog(`${name}:${result.msg} , µ±Ç°ÒÑÓĞ ${result.data.sign_rice_num} ´óÃ×`);
+				DoubleLog(`${name}:${result.msg} , å½“å‰å·²æœ‰ ${result.data.sign_rice_num} å¤§ç±³`);
 				await utils.wait(5);
 			} else if (result.code == 0) {
 				DoubleLog(`${name}:${result.msg}`);
 			} else {
-				DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+				DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 				console.log(result);
 			}
 
@@ -227,7 +216,7 @@ class Sbr {
 	}
 
 
-	// »ñÈ¡ºÃÓÑ´óÃ×id
+	// è·å–å¥½å‹å¤§ç±³id
 	async get_id(name) {
 		let options = {
 			method: "get",
@@ -257,12 +246,12 @@ class Sbr {
 
 			return _id_list;
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// ä¯ÀÀ²ËÆ×  https://growrice.supor.com/rice/backend/public/index.php/api/task/link-task
+	// æµè§ˆèœè°±  https://growrice.supor.com/rice/backend/public/index.php/api/task/link-task
 	async browse_recipes(name) {
 		let options = {
 			method: "post",
@@ -277,12 +266,12 @@ class Sbr {
 			DoubleLog(`${name}:${result.msg}`);
 			await utils.wait(3)
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// »ñÈ¡¿ÉÊÕÈ¡´óÃ×ĞÅÏ¢		get
+	// è·å–å¯æ”¶å–å¤§ç±³ä¿¡æ¯		get
 	async get_index_info(name) {
 		let options = {
 			method: "get",
@@ -296,20 +285,20 @@ class Sbr {
 		if (result.code == 1 && rice_list.length > 0) {
 			for (let index = 0; index < rice_list.length; index++) {
 				[_id, num, collect_name] = [rice_list[index].id, rice_list[index].num, rice_list[index].name]
-				await this.collect_rice("ÊÕ´óÃ×", _id, num, collect_name)
+				await this.collect_rice("æ”¶å¤§ç±³", _id, num, collect_name)
 			}
 		} else if (result.code == 1 && rice_list.length == 0) {
-			DoubleLog(`${name}, Ã»ÓĞ¿ÉÒÔÊÕ»ñµÄ´óÃ×`)
+			DoubleLog(`${name}, æ²¡æœ‰å¯ä»¥æ”¶è·çš„å¤§ç±³`)
 
 		} else if (result.code == 2) {
-			DoubleLog(`${result['msg']}, Çë×Ô¼ºÏÈ´ò¿ªÒ»´ÎĞ¡³ÌĞò,ÖÖ´óÃ×ºóÔÚÖ´ĞĞ½Å±¾!`)
+			DoubleLog(`${result['msg']}, è¯·è‡ªå·±å…ˆæ‰“å¼€ä¸€æ¬¡å°ç¨‹åº,ç§å¤§ç±³ååœ¨æ‰§è¡Œè„šæœ¬!`)
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// ÊÕ´óÃ×
+	// æ”¶å¤§ç±³
 	async collect_rice(name, _id, num, collect_name) {
 		let options = {
 			method: "post",
@@ -321,17 +310,17 @@ class Sbr {
 
 		// console.log(result);
 		if (result.code == 1) {
-			DoubleLog(`${name}: ÊÕÈ¡ ${collect_name} ${num} ´óÃ×, ${result.msg}`);
+			DoubleLog(`${name}: æ”¶å– ${collect_name} ${num} å¤§ç±³, ${result.msg}`);
 			await utils.wait(5)
 		} else if (result.code == 0) {
 			DoubleLog(`${name}: ${result.msg}`);
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// ³é½±ĞÅÏ¢		get
+	// æŠ½å¥–ä¿¡æ¯		get
 	async prize_Info(name) {
 		let options = {
 			method: "get",
@@ -342,24 +331,24 @@ class Sbr {
 
 		// console.log(result);
 		if (result.code == 1) {
-			DoubleLog(`${name}, ³é½±È¯${result.data.draw_num_1}ÕÅ, ¸ß¼¶³é½±È¯${result.data.draw_num_2}ÕÅ`)
+			DoubleLog(`${name}, æŠ½å¥–åˆ¸${result.data.draw_num_1}å¼ , é«˜çº§æŠ½å¥–åˆ¸${result.data.draw_num_2}å¼ `)
 			if (result.data.draw_num_1 > 0) {
-				await this.prize('ÆÕÍ¨³é½±', '1')
+				await this.prize('æ™®é€šæŠ½å¥–', '1')
 			}
 			if (result.data.draw_num_2 > 0) {
-				await this.prize('¸ß¼¶³é½±', '2')
+				await this.prize('é«˜çº§æŠ½å¥–', '2')
 			}
 			if (result.data.draw_num_1 == 0 && result.data.draw_num_2 == 0) {
-				DoubleLog(`${name}£ºÔİÊ±ÎŞ³é½±´ÎÊı£¡`)
+				DoubleLog(`${name}ï¼šæš‚æ—¶æ— æŠ½å¥–æ¬¡æ•°ï¼`)
 			}
 
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
-	// ³é½±  https://growrice.supor.com/rice/backend/public/index.php/api/prize/draw
+	// æŠ½å¥–  https://growrice.supor.com/rice/backend/public/index.php/api/prize/draw
 	async prize(name, type) {
 		let options = {
 			method: "post",
@@ -372,20 +361,20 @@ class Sbr {
 		// console.log(result);
 		if (result.code == 1) {
 			let prize_info = result.data.prize_info
-			DoubleLog(`${name}: »ñµÃ ${prize_info.prize_name} , ½±Æ·id: ${prize_info.prize_id}, ½±Æ·ÀàĞÍ: ${prize_info.prize_type}, ½±Æ·ÊıÁ¿: ${prize_info.prize_value}`);
+			DoubleLog(`${name}: è·å¾— ${prize_info.prize_name} , å¥–å“id: ${prize_info.prize_id}, å¥–å“ç±»å‹: ${prize_info.prize_type}, å¥–å“æ•°é‡: ${prize_info.prize_value}`);
 			await utils.wait(5)
-			await this.prize_Info('³é½±ĞÅÏ¢')
+			await this.prize_Info('æŠ½å¥–ä¿¡æ¯')
 		} else if (result.code == 0) {
 			DoubleLog(`${name}: ${result.msg}`);
-			await this.prize_Info('³é½±ĞÅÏ¢')
+			await this.prize_Info('æŠ½å¥–ä¿¡æ¯')
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
 
 
-	// ²éÑ¯´óÃ×ÊıÁ¿		get   https://growrice.supor.com/rice/backend/public/index.php/api/index/granary?&page=1&pagesize=10
+	// æŸ¥è¯¢å¤§ç±³æ•°é‡		get   https://growrice.supor.com/rice/backend/public/index.php/api/index/granary?&page=1&pagesize=10
 	async rice_num(name) {
 		let options = {
 			method: "get",
@@ -396,9 +385,9 @@ class Sbr {
 
 		// console.log(result);
 		if (result.code == 1) {
-			DoubleLog(`${name}, ÏÖÔÚÓĞ${result.data.rice_num} ´óÃ× , ÀÛ¼Æ»ñÈ¡ ${result.data.total_num} ´óÃ×`)
+			DoubleLog(`${name}, ç°åœ¨æœ‰${result.data.rice_num} å¤§ç±³ , ç´¯è®¡è·å– ${result.data.total_num} å¤§ç±³`)
 		} else {
-			DoubleLog(`${name}: Ê§°Ü?ÁËÄØ`);
+			DoubleLog(`${name}: å¤±è´¥?äº†å‘¢`);
 			console.log(result);
 		}
 	}
@@ -420,17 +409,17 @@ class Sbr {
 
 
 
-// #region ********************************************************  ¹Ì¶¨´úÂë  ********************************************************
+// #region ********************************************************  å›ºå®šä»£ç   ********************************************************
 
 /**
- * ÕËºÅ´¦Àí
+ * è´¦å·å¤„ç†
  */
 !(async () => {
 	let ckArr = await utils.checkEnv(ckStr, alias_name);
 	await tips(ckArr);
 	for (let index = 0; index < ckArr.length; index++) {
 		let num = index + 1;
-		DoubleLog(`\n-------- ¿ªÊ¼¡¾µÚ ${num} ¸öÕËºÅ¡¿--------`);
+		DoubleLog(`\n-------- å¼€å§‹ã€ç¬¬ ${num} ä¸ªè´¦å·ã€‘--------`);
 		ck = ckArr[index].split("&");
 		await start();
 	}
@@ -440,5 +429,5 @@ class Sbr {
 	.finally(() => $.done());
 
 
-	function Env(name, e) { class s { constructor(name) { this.env = name; } } return new (class { constructor(name) { (this.name = name), (this.logs = []), (this.startTime = new Date().getTime()), this.log(`\n??${this.name}, ¿ªÊ¼!`); } isNode() { return "undefined" != typeof module && !!module.exports; } log(...name) { name.length > 0 && (this.logs = [...this.logs, ...name]), console.log(name.join(this.logSeparator)); } done() { const e = new Date().getTime(), s = (e - this.startTime) / 1e3; this.log(`\n??${this.name}, ½áÊø! ?? ${s} Ãë`); } })(name, e); } async function httpResult(name, options) { if (!name) { name = /function\s*(\w*)/i.exec(arguments.callee.toString())[1]; } try { let result = await utils.httpRequest(name, options); if (result) { return result; } { DoubleLog(`Î´Öª´íÎó(1)`); } } catch (error) { console.log(error); } } async function SendMsg(message) { if (!message) return; if (Notify > 0) { if ($.isNode()) { var notify = require("./sendNotify"); await notify.sendNotify($.name, message); } else { console.log($.name, "", message); } } else { console.log(message); } } function wait(n) { return new Promise(function (resolve) { setTimeout(resolve, n * 1000); }); } function DoubleLog(data) { console.log(`    ${data}`); msg += `\n    ${data}`; }
+	function Env(name, e) { class s { constructor(name) { this.env = name; } } return new (class { constructor(name) { (this.name = name), (this.logs = []), (this.startTime = new Date().getTime()), this.log(`\n??${this.name}, å¼€å§‹!`); } isNode() { return "undefined" != typeof module && !!module.exports; } log(...name) { name.length > 0 && (this.logs = [...this.logs, ...name]), console.log(name.join(this.logSeparator)); } done() { const e = new Date().getTime(), s = (e - this.startTime) / 1e3; this.log(`\n??${this.name}, ç»“æŸ! ?? ${s} ç§’`); } })(name, e); } async function httpResult(name, options) { if (!name) { name = /function\s*(\w*)/i.exec(arguments.callee.toString())[1]; } try { let result = await utils.httpRequest(name, options); if (result) { return result; } { DoubleLog(`æœªçŸ¥é”™è¯¯(1)`); } } catch (error) { console.log(error); } } async function SendMsg(message) { if (!message) return; if (Notify > 0) { if ($.isNode()) { var notify = require("./sendNotify"); await notify.sendNotify($.name, message); } else { console.log($.name, "", message); } } else { console.log(message); } } function wait(n) { return new Promise(function (resolve) { setTimeout(resolve, n * 1000); }); } function DoubleLog(data) { console.log(`    ${data}`); msg += `\n    ${data}`; }
 //#endregion
