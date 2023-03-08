@@ -1,5 +1,6 @@
 /*
-微信打开: #小程序://蒙牛营养生活家/FzGssVYt9
+微信打开: #小程序://蒙牛营养生活家/FzGssVYt9Gii0Eq
+
 
 点会员-签到 搜tasklist
 抓域名member-api.mengniu.cn
@@ -8,7 +9,7 @@
 变量
 export mnflaghd='X-Token&unionId'
 */
-const $ = new Env('猛男');
+const $ = new Env('猛男flag');
 const axios = require('axios');
 let request = require("request");
 request = request.defaults({
@@ -19,7 +20,6 @@ const {
 } = console;
 const Notify = 1; //0为关闭通知，1为打开通知,默认为1
 const debug = 0; //0为关闭调试，1为打开调试,默认为0
-
 let mnflaghd = ($.isNode() ? process.env.mnflaghd : $.getdata("mnflaghd")) || ""
 let mnflaghdArr = [];
 let data = '';
@@ -41,7 +41,7 @@ var timestamp = Math.round(new Date().getTime()).toString();
 
 
 
-            log(`\n============ 微信公众号：老司机上线============`)
+            log(`\n============ 微信小程序：柠檬玩机 ============`)
             log(`\n=================== 共找到 ${mnflaghdArr.length} 个账号 ===================`)
             if (debug) {
                 log(`【debug】 这是你的全部账号数组:\n ${mnflaghdArr}`);
@@ -52,7 +52,7 @@ var timestamp = Math.round(new Date().getTime()).toString();
                 addNotifyStr(`\n==== 开始【第 ${num} 个账号】====\n`, true)
 
                 mnflaghd = mnflaghdArr[index];
-                //ck = mnflaghd.split('&')[0]
+                
                 tokens = mnflaghd.split('&')[0]
                 unionId = mnflaghd.split('&')[1]
 
@@ -98,6 +98,7 @@ var options = {
         axios.request(options).then(async function(response) {
             try {
                 data = response.data;
+                
                 if (debug) {
                     log(`\n\n【debug】===============这是 返回data==============`);
                     log(JSON.stringify(response.data));
@@ -107,7 +108,15 @@ var options = {
                  lists = data.data
                  await taskSubmit('01',113)   
                  for(i = 0; i < lists.length; i++){
-                  
+                 log(lists[i].name)
+                 log(lists[i].inviteProgress)
+                 if(lists[i].name=='邀请好友入会'){
+                  await taskSubmit(lists[i].businessCode,lists[i].id)
+                  await taskSubmit(lists[i].businessCode,lists[i].id)
+                  await taskSubmit(lists[i].businessCode,lists[i].id)
+                  await taskSubmit(lists[i].businessCode,lists[i].id)
+                  await taskSubmit(lists[i].businessCode,lists[i].id)   
+                 }
                  await taskSubmit(lists[i].businessCode,lists[i].id)
                  }
                  
